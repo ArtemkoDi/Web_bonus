@@ -119,27 +119,44 @@ body {
     height: 0 !important;
 }
 
-.sudoku-input {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    text-align: center;
-    font-size: 24px;
-    font-family: var(--font-serif);
-    font-weight: bold;
-    color: var(--user-blue);
-    outline: none;
-    box-sizing: border-box;
-}
-
-.sudoku-cell {
-    border-right: 1px solid var(--border-thin) !important;
-    border-bottom: 1px solid var(--border-thin) !important;
-}
 .border-r-thick { border-right: 3px solid var(--ink) !important; }
 .border-b-thick { border-bottom: 3px solid var(--ink) !important; }
 .border-r-none { border-right: none !important; }
 .border-b-none { border-bottom: none !important; }
+
+.sudoku-cell div, 
+.sudoku-input {
+    font-family: 'Georgia', serif !important;
+    font-size: 24px !important;      
+    font-weight: bold !important;    
+    color: #1A1A2E !important;       
+    justify-content: center !important;
+    align-items: center !important;
+    width: 45px !important;
+    height: 45px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.sudoku-input {
+    border: none !important;
+    background: transparent !important;
+    outline: none !important;
+    display: block !important;
+    text-align: center !important;
+    cursor: pointer;
+}
+
+#wdr-component .wdr-cell {
+    width: 45px !important;
+    height: 45px !important;
+    border: 1px solid #CCC6B8 !important; 
+    box-sizing: border-box !important;
+}
+
+#wdr-component .wdr-cell:nth-child(3n) { border-right: 2.5px solid #1A1A2E !important; }
+#wdr-component .wdr-row:nth-child(3n) .wdr-cell { border-bottom: 2.5px solid #1A1A2E !important; }
+
+#wdr-component .wdr-cell:nth-child(9n+1) { border-left: 2.5px solid #1A1A2E !important; } /* Ліва */
+#wdr-component .wdr-row:first-child .wdr-cell { border-top: 2.5px solid #1A1A2E !important; } /* Верхня */
