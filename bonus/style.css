@@ -25,7 +25,6 @@ body {
     font-family: var(--font-sans); transition: all 0.2s ease;
 }
 
-/* ── КОНТЕЙНЕР РУШІЯ ── */
 #wdr-component {
     margin: 0 auto;
     background: transparent;
@@ -33,7 +32,6 @@ body {
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-/* ── ЖОРСТКИЙ РОЗМІР КЛІТИНОК ── */
 #wdr-component .wdr-cell {
     width: 45px !important;
     height: 45px !important;
@@ -47,10 +45,101 @@ body {
     box-sizing: border-box !important;
 }
 
-/* Приховуємо системні заголовки */
 #wdr-component .wdr-header,
 #wdr-component .wdr-empty,
 #wdr-component .wdr-toolbar,
 #wdr-component .wdr-field-list-btn {
     display: none !important;
 }
+
+.sudoku-input {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-size: 24px;
+    font-family: var(--font-serif);
+    font-weight: bold;
+    color: var(--user-blue);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.sudoku-cell {
+    border-right: 1px solid var(--border-thin) !important;
+    border-bottom: 1px solid var(--border-thin) !important;
+}
+
+.border-r-thick { border-right: 3px solid var(--ink) !important; }
+.border-b-thick { border-bottom: 3px solid var(--ink) !important; }
+
+.border-r-none { border-right: none !important; }
+.border-b-none { border-bottom: none !important; }
+
+#wdr-component {
+    width: max-content;
+}
+
+#wdr-component .wdr-selection-wrapper,
+#wdr-component .wdr-selection,
+#wdr-component .wdr-active-cell {
+    display: none !important;
+    opacity: 0 !important;
+}
+
+#wdr-component {
+    width: max-content;
+}
+
+#wdr-component .wdr-grid-container {
+    overflow: hidden !important;
+    background: transparent !important;
+}
+
+#wdr-component .wdr-grid-layout,
+#wdr-component .wdr-sheet {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+#wdr-component .wdr-header,
+#wdr-component .wdr-empty,
+#wdr-component .wdr-blank,
+#wdr-component .wdr-selection,
+#wdr-component .wdr-active-cell,
+#wdr-component .wdr-selection-border,
+#wdr-component .wdr-selection-wrapper {
+    display: none !important;
+    opacity: 0 !important;
+    border: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.sudoku-input {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-size: 24px;
+    font-family: var(--font-serif);
+    font-weight: bold;
+    color: var(--user-blue);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.sudoku-cell {
+    border-right: 1px solid var(--border-thin) !important;
+    border-bottom: 1px solid var(--border-thin) !important;
+}
+.border-r-thick { border-right: 3px solid var(--ink) !important; }
+.border-b-thick { border-bottom: 3px solid var(--ink) !important; }
+.border-r-none { border-right: none !important; }
+.border-b-none { border-bottom: none !important; }

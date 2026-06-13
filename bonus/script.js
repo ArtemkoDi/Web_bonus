@@ -13,9 +13,9 @@ const PUZZLES = [
   ]
 ];
 
-let gameBoard    = [];
+let gameBoard = [];
 let initialBoard = [];
-let pivot        = null;
+let pivot = null;
 
 const clone = b => b.map(r => r.slice());
 
@@ -135,11 +135,9 @@ function renderGameCells(cellBuilder, cellData) {
 
       cellBuilder.addClass("sudoku-cell");
 
-      // Додаємо класи потовщених рамок для блоків 3x3
       if (c === 2 || c === 5) cellBuilder.addClass("border-r-thick");
       if (r === 2 || r === 5) cellBuilder.addClass("border-b-thick");
 
-      // Прибираємо тонкі рамки на самих краях, щоб не двоїлися з головною рамкою контейнера
       if (c === 8) cellBuilder.addClass("border-r-none");
       if (r === 8) cellBuilder.addClass("border-b-none");
 
@@ -164,8 +162,6 @@ function initPivot() {
   pivot = new WebDataRocks({
     container: '#wdr-component',
     toolbar: false,
-    width: 405,  /* ЖОРСТКИЙ КОНТРОЛЬ: 9 клітинок * 45px = 405px */
-    height: 405, /* ЖОРСТКИЙ КОНТРОЛЬ: 9 клітинок * 45px = 405px */
     report: {
       dataSource: { data: boardToData() },
       slice: {
