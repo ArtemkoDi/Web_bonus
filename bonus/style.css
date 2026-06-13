@@ -158,5 +158,5 @@ body {
 #wdr-component .wdr-cell:nth-child(3n) { border-right: 2.5px solid #1A1A2E !important; }
 #wdr-component .wdr-row:nth-child(3n) .wdr-cell { border-bottom: 2.5px solid #1A1A2E !important; }
 
-#wdr-component .wdr-cell:nth-child(9n+1) { border-left: 2.5px solid #1A1A2E !important; } /* Ліва */
-#wdr-component .wdr-row:first-child .wdr-cell { border-top: 2.5px solid #1A1A2E !important; } /* Верхня */
+#wdr-component .wdr-cell:nth-child(9n+1) { border-left: 2.5px solid #1A1A2E !important; }
+#wdr-component .wdr-row:first-child .wdr-cell { border-top: 2.5px solid #1A1A2E !important; }
