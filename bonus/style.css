@@ -1,0 +1,56 @@
+:root {
+  --bg:          #F5F1E8;
+  --surface:     #FDFAF4;
+  --ink:         #1A1A2E;
+  --user-blue:   #2563EB;
+  --border-thin: #CCC6B8;
+  --font-serif:  'Georgia', serif;
+  --font-sans:   system-ui, sans-serif;
+}
+
+body {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh; margin: 0; background: var(--bg); font-family: var(--font-sans);
+}
+
+#game-dashboard {
+    display: flex; justify-content: center; align-items: center;
+    width: 100%; max-width: 405px; margin-bottom: 20px;
+}
+
+.restart-btn {
+    background: var(--surface); border: 1px solid var(--border-thin);
+    color: var(--ink); padding: 8px 16px; border-radius: 8px;
+    font-size: 16px; cursor: pointer; display: flex; align-items: center; gap: 6px;
+    font-family: var(--font-sans); transition: all 0.2s ease;
+}
+
+/* ── КОНТЕЙНЕР РУШІЯ ── */
+#wdr-component {
+    margin: 0 auto;
+    background: transparent;
+    border: 3px solid var(--ink);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* ── ЖОРСТКИЙ РОЗМІР КЛІТИНОК ── */
+#wdr-component .wdr-cell {
+    width: 45px !important;
+    height: 45px !important;
+    min-width: 45px !important;
+    max-width: 45px !important;
+    min-height: 45px !important;
+    max-height: 45px !important;
+    padding: 0 !important; 
+    border: none !important; 
+    background: transparent !important;
+    box-sizing: border-box !important;
+}
+
+/* Приховуємо системні заголовки */
+#wdr-component .wdr-header,
+#wdr-component .wdr-empty,
+#wdr-component .wdr-toolbar,
+#wdr-component .wdr-field-list-btn {
+    display: none !important;
+}
