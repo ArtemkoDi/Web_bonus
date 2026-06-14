@@ -1,17 +1,5 @@
 "use strict";
 
-const PUZZLES = [
-  [
-    [0,0,0, 2,6,0, 7,0,1], [6,8,0, 0,7,0, 0,9,0], [1,9,0, 0,0,4, 5,0,0],
-    [8,2,0, 1,0,0, 0,4,0], [0,0,4, 6,0,2, 9,0,0], [0,5,0, 0,0,3, 0,2,8],
-    [0,0,9, 3,0,0, 0,7,4], [0,4,0, 0,5,0, 0,3,6], [7,0,3, 0,1,8, 0,0,0],
-  ],
-  [
-    [0,0,0, 0,0,0, 0,0,1], [0,0,0, 0,7,0, 0,9,0], [1,9,0, 0,0,4, 5,0,0],
-    [8,2,0, 0,0,0, 0,4,0], [0,0,4, 6,0,2, 9,0,0], [0,5,0, 0,0,0, 0,2,8],
-    [0,0,9, 3,0,0, 0,7,4], [0,4,0, 0,5,0, 0,3,6], [7,0,3, 0,1,8, 0,0,0],
-  ]
-];
 
 let gameBoard = [];
 let initialBoard = [];
@@ -19,8 +7,60 @@ let pivot = null;
 
 const clone = b => b.map(r => r.slice());
 
-function randomPuzzle() {
-  return PUZZLES[Math.floor(Math.random() * PUZZLES.length)];
+function isSafe(board, row, col, num) {
+  for (let x = 0; x < 9; x++) {
+    if (board[row][x] === num || board[x][col] === num) {
+      return false; 
+    }
+  }
+  let startRow = Math.floor(row / 3) * 3;
+  let startCol = Math.floor(col / 3) * 3;
+
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (board[startRow + i][startCol + j] === num) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+function fillBoard(board) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+        if (board[i][j] === 0) {
+            let nums = [1, 2, 3, 4, 5, 6, 7, 8, 9].sort(() => Math.random() - 0.5);
+            for (let num of nums) {
+                if (isSafe(board, i, j, num)) {
+                board[i][j] = num; 
+                if (fillBoard(board)) {
+                return true; 
+            }
+            board[i][j] = 0; 
+          }
+        }
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+function generatePuzzle() {
+  let board = Array.from({ length: 9 }, () => Array(9).fill(0));
+  fillBoard(board);
+  let cellsToRemove = 48;
+  while (cellsToRemove > 0) {
+    // Беремо випадкові координати X та Y
+    let row = Math.floor(Math.random() * 9);
+    let col = Math.floor(Math.random() * 9);
+    if (board[row][col] !== 0) {
+      board[row][col] = 0;
+      cellsToRemove--;
+    }
+  }
+  return board;
 }
 
 function boardToData() {
@@ -63,6 +103,7 @@ function handleInput(row, col, rawVal, inputEl) {
 
   if (!/^[1-9]$/.test(rawVal)) {
     inputEl.value = ''; 
+    gameBoard[row][col] = 0;
     setTimeout(() => alert('Введіть цифру від 1 до 9.'), 10); 
     return;
   }
@@ -72,6 +113,7 @@ function handleInput(row, col, rawVal, inputEl) {
   
   if (!check.ok) {
     inputEl.value = '';
+    gameBoard[row][col] = 0;
     setTimeout(() => alert(`Помилка! Цифра ${val} вже є у цьому ${check.where}.`), 10);
     return;
   }
@@ -81,7 +123,6 @@ function handleInput(row, col, rawVal, inputEl) {
   if (isComplete()) {
       setTimeout(() => {
           alert("Вітаємо! Ви перемогли!");
-          startGame();
       }, 100);
   }
 }
@@ -185,7 +226,7 @@ function initPivot() {
 }
 
 function startGame() {
-  const puzzle = randomPuzzle();
+  const puzzle = generatePuzzle();
   initialBoard = clone(puzzle); 
   gameBoard = clone(puzzle);
   
