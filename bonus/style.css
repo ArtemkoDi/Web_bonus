@@ -107,3 +107,7 @@ body {
     line-height: 45px !important;
     cursor: pointer;
 }
+#wdr-pivot-view .wdr-grid-layout .wdr-sheet-selection-canvas {
+    background-color: transparent !important;
+    border: none !important;
+}

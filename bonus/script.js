@@ -52,7 +52,6 @@ function generatePuzzle() {
   fillBoard(board);
   let cellsToRemove = 48;
   while (cellsToRemove > 0) {
-    // Беремо випадкові координати X та Y
     let row = Math.floor(Math.random() * 9);
     let col = Math.floor(Math.random() * 9);
     if (board[row][col] !== 0) {
