@@ -6,6 +6,7 @@ let initialBoard = [];
 let pivot = null;
 let timerInterval;
 let seconds = 0;
+let isGameWon = false;
 
 const clone = b => b.map(r => r.slice());
 
@@ -97,6 +98,11 @@ function isComplete() {
 }
 
 function handleInput(row, col, rawVal, inputEl) {
+  if (isGameWon) {
+      inputEl.value = gameBoard[row][col] !== 0 ? gameBoard[row][col] : '';
+      return;
+  }
+
   if (rawVal === '' || rawVal == null) { 
       gameBoard[row][col] = 0; 
       return; 
@@ -122,7 +128,13 @@ function handleInput(row, col, rawVal, inputEl) {
   gameBoard[row][col] = val;
   
   if (isComplete()) {
+    isGameWon = true;
     const finalTime = stopTimer();
+    
+    document.querySelectorAll('.sudoku-input').forEach(input => {
+        input.readOnly = true; 
+    });
+
     setTimeout(() => {
         alert(`Вітаємо! Ви перемогли! Ваш час: ${finalTime}`);
       }, 100);
@@ -207,6 +219,7 @@ function initPivot() {
         measures: [{ uniqueName: "Значення", aggregation: "sum" }]
       },
       options: {
+        drillThrough: false,
         grid: {
           type: "classic",
           showHeaders: false,
@@ -248,6 +261,7 @@ function stopTimer() {
 }
 
 function startGame() {
+  isGameWon = false;
   const puzzle = generatePuzzle();
   initialBoard = clone(puzzle); 
   gameBoard = clone(puzzle);
