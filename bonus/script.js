@@ -4,6 +4,8 @@
 let gameBoard = [];
 let initialBoard = [];
 let pivot = null;
+let timerInterval;
+let seconds = 0;
 
 const clone = b => b.map(r => r.slice());
 
@@ -120,8 +122,9 @@ function handleInput(row, col, rawVal, inputEl) {
   gameBoard[row][col] = val;
   
   if (isComplete()) {
-      setTimeout(() => {
-          alert("Вітаємо! Ви перемогли!");
+    const finalTime = stopTimer();
+    setTimeout(() => {
+        alert(`Вітаємо! Ви перемогли! Ваш час: ${finalTime}`);
       }, 100);
   }
 }
@@ -224,6 +227,32 @@ function initPivot() {
   });
 }
 
+function updateTimer() {
+    let m = Math.floor(seconds / 60);
+    let s = seconds % 60;
+    
+    if (m < 10) m = "0" + m;
+    if (s < 10) s = "0" + s;
+    
+    document.getElementById('timer').textContent = `⏱ ${m}:${s}`;
+}
+
+function startTimer() {
+    clearInterval(timerInterval); 
+    seconds = 0;    
+    updateTimer();  
+    
+    timerInterval = setInterval(() => {
+        seconds++;
+        updateTimer();
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+    return document.getElementById('timer').textContent; 
+}
+
 function startGame() {
   const puzzle = generatePuzzle();
   initialBoard = clone(puzzle); 
@@ -231,6 +260,7 @@ function startGame() {
   
   if (pivot) pivot.updateData({ data: boardToData() });
   else initPivot();
+  startTimer();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

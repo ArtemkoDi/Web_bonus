@@ -15,7 +15,20 @@ body {
 
 #game-dashboard {
     display: flex; justify-content: center; align-items: center;
-    width: 100%; max-width: 405px; margin-bottom: 20px;
+    width: 100%; max-width: 405px; margin-bottom: 20px; gap: 15px;
+}
+
+.timer-display {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--ink);
+    background: var(--surface);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-thin);
+    min-width: 70px;
+    text-align: center;
 }
 
 .restart-btn {
