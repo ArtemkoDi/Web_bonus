@@ -178,12 +178,6 @@ function renderGameCells(cellBuilder, cellData) {
 
       cellBuilder.addClass("sudoku-cell");
 
-      if (c === 2 || c === 5) cellBuilder.addClass("border-r-thick");
-      if (r === 2 || r === 5) cellBuilder.addClass("border-b-thick");
-
-      if (c === 8) cellBuilder.addClass("border-r-none");
-      if (r === 8) cellBuilder.addClass("border-b-none");
-
       if (isGiven) {
           cellBuilder.text = `<div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; font-family: 'Georgia', serif; font-size: 24px; font-weight: bold; color: #1A1A2E;">${val}</div>`;
       } else {
